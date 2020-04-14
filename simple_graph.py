@@ -38,7 +38,6 @@ class SimpleGraph:
 		self.m_adjacency[v2][v1] = 0
 
 	def DepthFirstSearch(self, VFrom, VTo):
-		def DepthFirstSearch(self, VFrom, VTo):
 		result = [self.vertex[VFrom]]
 		if VFrom == VTo:
 			return result
@@ -51,33 +50,3 @@ class SimpleGraph:
 						if result[len(result)-1] == self.vertex[VTo]:
 							return result
 			return []
-		
-		
-		"""stack = []
-		visited = []
-		stack.append(VFrom)
-		visited.append(self.vertex[VFrom])
-		self.vertex[VFrom].Hit = True
-		while len(stack) != 0 and VFrom != VTo:
-			if self.m_adjacency[VFrom][VTo] == 1:
-				stack.append(VTo)
-				VFrom = VTo			
-			else:
-				count = 1
-				for i in range(self.max_vertex):
-					if self.m_adjacency[VFrom][i] == 1:
-						if self.vertex[i].Hit == False:
-							stack.append(i)
-							VFrom = i
-							self.vertex[i].Hit = True
-							visited.append(self.vertex[i])
-							count = 0
-							break
-				if count > 0:
-					stack.pop()
-					VFrom = len(stack)-1
-		for i in range(len(stack)):
-			stack[i] = self.vertex[stack[i]]
-		for i in range(len(visited)):
-			visited[i].Hit = False
-		return stack"""
