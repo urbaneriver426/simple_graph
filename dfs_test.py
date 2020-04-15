@@ -24,3 +24,6 @@ class TestSimpleGraph(unittest.TestCase):
 		assert x[0].Value == "D"
 		assert x[1].Value == "A"
 		assert len(x) == 2
+
+if __name__ == '__main__':
+	unittest.main()
