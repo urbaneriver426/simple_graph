@@ -39,6 +39,7 @@ class SimpleGraph:
 
 	def DepthFirstSearch(self, VFrom, VTo):
 		result = [self.vertex[VFrom]]
+		visited = [self.vertex[VFrom]]
 		if VFrom == VTo:
 			return result
 		else:
@@ -47,6 +48,9 @@ class SimpleGraph:
 				if self.m_adjacency[VFrom][i] == 1:
 					if self.vertex[i].Hit == False:
 						result += self.DepthFirstSearch(i,VTo)
+						visited += self.DepthFirstSearch(i,VTo)
 						if result[len(result)-1] == self.vertex[VTo]:
+							for j in range(len(visited)):
+								visited[j].Hit = False
 							return result
 			return []
