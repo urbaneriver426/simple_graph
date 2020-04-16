@@ -3,7 +3,7 @@ class TestSimpleGraph(unittest.TestCase):
 	def setUp(self):
 		self.simpleGraph = SimpleGraph(16)
 
-	def testDFSDtoA(self):
+		def testDFSDtoA(self):
 		letters = ["A","B","C","D","E"]
 		for i in letters:
 			self.simpleGraph.AddVertex(i)
@@ -22,10 +22,11 @@ class TestSimpleGraph(unittest.TestCase):
 		self.simpleGraph.AddEdge(3,4)
 		self.simpleGraph.AddEdge(4,1)
 		self.simpleGraph.AddEdge(4,3)
-		x = self.simpleGraph.DepthFirstSearch(3,0)
-		assert x[0].Value == "D"
-		assert x[1].Value == "A"
-		assert len(x) == 2
-
-if __name__ == '__main__':
-	unittest.main()
+		x = self.simpleGraph.DepthFirstSearch(0,4)
+		for i in range(len(x)):
+			x[i] = x[i].Value
+		y = self.simpleGraph.DepthFirstSearch(3,0)
+		for i in range(len(y)):
+			y[i] = y[i].Value
+		assert x == ["A","B","D","E"]
+		assert y == ["D","A"]
