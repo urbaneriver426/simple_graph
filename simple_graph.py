@@ -18,7 +18,9 @@ class SimpleTree:
 		NodeToDelete.Parent.Children.remove(NodeToDelete)
 		NodeToDelete.Parent = None 
 
-	def GetAllNodes(self,result = [], count = 0):
+	def GetAllNodes(self,result = None, count = 0):
+		if result is None:
+			result = []
 		if count == 0:
 			if self.Root is not None:
 				result.append(self.Root)
@@ -113,13 +115,13 @@ class SimpleGraph:
 							return result
 			return []
 
-	def BreadthFirstSearch(self, VFrom, VTo, quene = None, tree = None, visited = []):
+
+	def BreadthFirstSearch(self, VFrom, VTo, quene = None, tree = None, visited = None):
 		if quene == None:
 			quene = []
 			tree = SimpleTree(SimpleTreeNode(self.vertex[VFrom], None))
-			visited = []
+			visited = [self.vertex[VFrom]]
 		currNode = tree.FindNodesByValue(self.vertex[VFrom])[0]
-		visited = [self.vertex[VFrom]]
 		if VFrom == VTo:
 			result = []
 			while currNode:
@@ -134,6 +136,11 @@ class SimpleGraph:
 				if self.m_adjacency[VFrom][i] == 1:
 					if self.vertex[i].Hit == False:
 						quene.append(i)
-						tree.AddChild(currNode, SimpleTreeNode(self.vertex[i],currNode))
-			VFrom = quene.pop(0)
-			return self.BreadthFirstSearch(VFrom, VTo, quene, tree)
+						self.vertex[i].Hit = True
+						visited.append(self.vertex[i])
+						tree.AddChild(currNode, SimpleTreeNode(self.vertex[i],None))
+			if len(quene) > 0:
+				VFrom = quene.pop(0)
+				return self.BreadthFirstSearch(VFrom, VTo, quene, tree, visited)
+			else:
+				return []
